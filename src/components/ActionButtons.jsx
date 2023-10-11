@@ -21,7 +21,7 @@ const ActionButtons = ({ handleDelete, id, handleEdit }) => {
   };
 
   const handleClose = () => {
-    setOpen(close);
+    setOpen(false);
     setIsEdit(false);
   };
 

@@ -2,16 +2,18 @@ import { ModalBox } from "./ModalBox";
 import { Button } from "@mui/material";
 import { AddOutlined } from "@mui/icons-material";
 import { useState } from "react";
+import { useGlobalContext } from "../../context";
 
-const AddNew = ({ handleAddNew }) => {
+const AddNew = () => {
   const [open, setOpen] = useState(false);
+  const { handleAddNew } = useGlobalContext();
 
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(close);
+    setOpen(false);
   };
 
   return (
@@ -28,8 +30,8 @@ const AddNew = ({ handleAddNew }) => {
       </Button>
       <ModalBox
         open={open}
-        handleClose={handleClose}
         handleAddNew={handleAddNew}
+        handleClose={handleClose}
       />
     </div>
   );
