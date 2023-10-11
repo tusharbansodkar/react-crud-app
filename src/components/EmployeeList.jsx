@@ -12,8 +12,7 @@ import {
 } from "@mui/material";
 import ActionButtons from "./ActionButtons";
 import AddNew from "./AddNew";
-import { useState } from "react";
-import { data } from "../data";
+import { useGlobalContext } from "../../context";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,11 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const EmployeeList = () => {
-  const [employees, setEmployees] = useState(data);
-  const handleAddNew = (record) => {
-    setEmployees([...employees, record]);
-    console.log(data);
-  };
+  const {employees} = useGlobalContext()
   const handleDelete = (id) => {
     const newList = employees.filter((employee) => id !== employee.id);
     setEmployees(newList);
@@ -52,7 +47,7 @@ const EmployeeList = () => {
 
   return (
     <>
-      <AddNew handleAddNew={handleAddNew} />
+      <AddNew />
       <TableContainer component={Paper} sx={{ maxHeight: 400, minHeight: 400 }}>
         <Table sx={{ minWidth: 600 }} stickyHeader>
           <TableHead>
